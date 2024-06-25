@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.prova.prova.dtos.CityRequest;
 import com.prova.prova.dtos.CityResponse;
 import com.prova.prova.services.CityService;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("cities")
@@ -26,4 +30,10 @@ public List<CityResponse> getCities(){
 public CityResponse getCityById(@PathVariable int id){
     return cityService.getCityById(id);
 }
+
+@PutMapping("{id}")
+public void updateCity(@PathVariable int id, @RequestBody CityRequest cidade ){
+
+    this.cityService.updateCity(id, cidade);
+    }
 }
