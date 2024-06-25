@@ -11,6 +11,8 @@ import com.prova.prova.entities.Cidade;
 import com.prova.prova.mappers.CityMapper;
 import com.prova.prova.repositories.CityRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class CityService {
     
@@ -23,5 +25,10 @@ public class CityService {
         return cidades.stream()
                     .map(c -> CityMapper.toDTO(c))
                     .collect(Collectors.toList());
+    }
+    public CityResponse getCityById(int id) {
+        Cidade city = cityRepository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("Cidade não cadastrada"));
+            return CityMapper.toDTO(city);
     }
 }
