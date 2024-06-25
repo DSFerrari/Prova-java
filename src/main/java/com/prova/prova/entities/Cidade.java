@@ -25,7 +25,7 @@ public class Cidade {
     private Integer população;
 
     @Column
-    private Double pib;
+    private String pib;
 
     public Integer getId() {
         return id;
@@ -59,11 +59,12 @@ public class Cidade {
         this.população = população;
     }
 
-    public Double getPib() {
+    public String getPib() {
         return pib;
     }
 
-    public void setPib(Double pib) {
+    public void setPib(String pib) {
         this.pib = pib;
     }
-}
+
+    }
