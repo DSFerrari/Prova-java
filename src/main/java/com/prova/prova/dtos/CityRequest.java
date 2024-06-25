@@ -1,5 +1,15 @@
 package com.prova.prova.dtos;
 
-public record CityRequest(String nome, String estado, Integer população, String pib){
+import jakarta.validation.constraints.NotNull;
 
-}
+public record CityRequest(
+ @NotNull(message= "Nome não pode ser nulo")
+ String nome,
+
+ @NotNull(message= "Nome não pode ser nulo")
+ String estado,
+ @NotNull(message= "Nome não pode ser nulo")
+ Integer população,
+ @NotNull(message= "Nome não pode ser nulo")
+ String pib
+){}
