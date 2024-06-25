@@ -40,7 +40,6 @@ public class CityService {
     }
 
     public void updateCity(int id, CityRequest request){
-       if(this.cityRepository.existsById(id))
         try{
             Cidade aux = cityRepository.getReferenceById(id);
             aux.setNome(request.nome());
@@ -52,4 +51,13 @@ public class CityService {
             throw new EntityNotFoundException("Cidade não cadastrada");
         }
         }
+
+        public void deleteCityById(int id) {
+            if (this.cityRepository.existsById(id)) {
+            this.cityRepository.deleteById(id);
+            }
+            else {
+            throw new EntityNotFoundException("Cidade não cadastrada");
+            }
+            }
     }
