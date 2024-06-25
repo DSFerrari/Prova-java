@@ -3,6 +3,7 @@ package com.prova.prova.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,22 +24,23 @@ public class CityController {
     private CityService cityService;
 
 @GetMapping
-public List<CityResponse> getCities(){
-    return cityService.getCities();
+public ResponseEntity<List<CityResponse>> getCities(){
+    return ResponseEntity.ok(cityService.getCities());
 }
 
 @GetMapping("{id}")
-public CityResponse getCityById(@PathVariable int id){
-    return cityService.getCityById(id);
+public ResponseEntity<CityResponse>getCityById(@PathVariable int id){
+    return ResponseEntity.ok( cityService.getCityById(id));
 }
 
 @PutMapping("{id}")
-public void updateCity(@PathVariable int id, @RequestBody CityRequest cidade ){
-
+public ResponseEntity<Void> updateCity(@PathVariable int id, @RequestBody CityRequest cidade ){
     this.cityService.updateCity(id, cidade);
-    }
+    return ResponseEntity.ok().build();   
+}
 @DeleteMapping("{id}")
- public void deleteCityById(@PathVariable int id) {
+ public ResponseEntity<Void> deleteCityById(@PathVariable int id) {
  this.cityService.deleteCityById(id);
+ return ResponseEntity.noContent().build();
  }
 }
